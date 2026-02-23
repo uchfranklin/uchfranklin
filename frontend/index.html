@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Store</title>
+</head>
+<body>
+  <h2>Create Order</h2>
+
+  <input id="customer" placeholder="Customer ID">
+  <input id="total" placeholder="Total Amount">
+
+  <button onclick="submitOrder()">Submit</button>
+
+  <script>
+    function submitOrder() {
+      fetch("/create-order", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          customer_id: document.getElementById("customer").value,
+          total: document.getElementById("total").value
+        })
+      }).then(res => res.text()).then(alert);
+    }
+  </script>
+</body>
+</html>
